@@ -1,0 +1,80 @@
+project.ext {
+    support = "1.0.0"
+    constraintlayout = "2.0.0-alpha2"
+    arch = "2.0.0"
+    retrofit = "2.0.2"
+    constraintLayout = "1.0.2"
+    dagger_version = "2.15"
+}
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        applicationId "com.example.weather"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.google.android.material:material:$project.support"
+    implementation "androidx.appcompat:appcompat:$project.support"
+    implementation "androidx.cardview:cardview:$project.support"
+    implementation "androidx.recyclerview:recyclerview:$project.support"
+    implementation "androidx.constraintlayout:constraintlayout:$project.constraintlayout"
+    implementation "androidx.legacy:legacy-support-v4:$project.support"
+
+    // Arch
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$project.arch"
+    implementation "androidx.lifecycle:lifecycle-runtime:$project.arch"
+    implementation "androidx.lifecycle:lifecycle-extensions:$project.arch"
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-jackson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+
+
+    // Rxjava
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    //okHttp
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.squareup.okio:okio:1.14.0'
+    implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.9.1'
+
+    //Gson retrofit
+    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
+
+
+
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+
+}

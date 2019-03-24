@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<data>
+    <import type="android.view.View" />
+    <variable name="countryThumb" type="String" />
+    <variable name="country" type="com.example.weather.data.model.Country"/>
+    <variable name="callback" type="com.example.weather.view.callback.CountryClickCallback"/>
+</data>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:onClick="@{() ->  callback.onClick(country)}"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="@color/white"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground"
+    >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/countryImg"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:civ_border_width="4dp"
+        app:imageUrl="@{countryThumb}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/countryTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginStart="16dp"
+        android:textColor="@android:color/black"
+        android:text="@{country.name}"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/countryImg"
+        app:layout_constraintTop_toTopOf="@+id/countryImg" />
+
+    <TextView
+        android:id="@+id/areaTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@android:color/black"
+        android:text="@{country.region}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/countryImg"
+        app:layout_constraintTop_toBottomOf="@+id/countryTxt"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
