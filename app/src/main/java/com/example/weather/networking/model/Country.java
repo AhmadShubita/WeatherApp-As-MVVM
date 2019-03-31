@@ -1,4 +1,4 @@
-package com.example.weather.data.model;
+package com.example.weather.networking.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -36,6 +36,8 @@ public class Country implements Serializable {
     @Expose
     @SerializedName("latlng")
     private ArrayList<String> latLng;
+
+    private boolean selected = false;
 
 
     public void setName(String name) {
@@ -92,6 +94,14 @@ public class Country implements Serializable {
 
     public void setLatLng(ArrayList<String> latLng) {
         this.latLng = latLng;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public boolean isSelected() {
+        return selected;
     }
 
     @Override

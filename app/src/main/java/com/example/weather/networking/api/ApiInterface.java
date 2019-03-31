@@ -1,8 +1,8 @@
-package com.example.weather.data.networking.api;
+package com.example.weather.networking.api;
 
 
-import com.example.weather.data.model.Country;
-import com.example.weather.data.model.WeatherResponse;
+import com.example.weather.networking.model.Country;
+import com.example.weather.networking.model.WeatherResponse;
 import com.example.weather.utils.AppConstant;
 
 import java.util.List;

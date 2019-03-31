@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import com.example.weather.R;
-import com.example.weather.data.AppPreferencesHelper;
 import com.example.weather.networking.model.Country;
 import com.example.weather.databinding.ActivityMainBinding;
 import com.example.weather.utils.ActivityUtils;
@@ -14,12 +13,10 @@ import com.example.weather.view.adapter.CountryAdapter;
 import com.example.weather.view.callback.CountryClickCallback;
 import com.example.weather.viewmodel.MainViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 
