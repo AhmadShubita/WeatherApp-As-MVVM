@@ -11,8 +11,8 @@ AppConstant {
     public static final  String BASE_URL = "https://restcountries.eu/rest/v1/";
     public static final  String FLAG_URL = "http://www.geognos.com/api/en/countries/flag/";
     public static final  String ENDPOINT_COUNTRY = "all";
-    public static final  String WEATHER_API = "1867722b6af87e1d0388e10c5a94be34";
-//    public static final  String ENDPOINT_WEATHER = "http://api.openweathermap.org/data/2.5/forecast?lat=35&lon=139&units=metric&appid=1867722b6af87e1d0388e10c5a94be34";
-    public static final  String ENDPOINT_WEATHER = "http://api.openweathermap.org/data/2.5/forecast?";
+    public static final  String WEATHER_APPID = "1867722b6af87e1d0388e10c5a94be34";
+    public static final  String ENDPOINT_WEATHER = "http://api.openweathermap.org/data/2.5/";
+    public static final String ENDPOINT_WEATHER_STATE ="forecast?";
 
 }

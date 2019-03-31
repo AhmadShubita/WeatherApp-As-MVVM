@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 
 import com.example.weather.R;
 import com.example.weather.databinding.FragmentCountryDetailBinding;
-import com.example.weather.data.model.Country;
-import com.example.weather.data.model.Weather;
-import com.example.weather.data.model.WeatherResponse;
+import com.example.weather.networking.model.Country;
+import com.example.weather.networking.model.Weather;
+import com.example.weather.networking.model.WeatherResponse;
 import com.example.weather.view.adapter.WeatherPagerAdapter;
 import com.example.weather.viewmodel.CountryDetailViewModel;
 import com.google.android.material.tabs.TabLayout;

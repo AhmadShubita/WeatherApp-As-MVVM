@@ -1,12 +1,14 @@
 package com.example.weather.view.adapter;
 
 
+import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.weather.R;
 import com.example.weather.databinding.ItemCountryBinding;
-import com.example.weather.data.model.Country;
+import com.example.weather.networking.model.Country;
 import com.example.weather.view.callback.CountryClickCallback;
 
 import java.util.ArrayList;
@@ -23,6 +25,9 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
 
     @Nullable
     private final CountryClickCallback countryClickCallback;
+    private int previousPosition = -1;
+
+    private Context mContext;
 
 
 
@@ -37,8 +42,6 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
                 .inflate(LayoutInflater.from(parent.getContext()), R.layout.item_country,
                         parent, false);
 
-        binding.setCallback(countryClickCallback);
-
         return new CountryViewHolder(binding);
 
         }
@@ -46,9 +49,12 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
 
     @Override
     public void onBindViewHolder(@NonNull CountryViewHolder holder, final int position) {
+
         holder.binding.setCountry(mCountryList.get(position));
         holder.binding.executePendingBindings();
         holder.binding.setCountryThumb(mCountryList.get(position).getCountryCode());
+        holder.binding.setCallback(countryClickCallback);
+
 
     }
 
@@ -63,6 +69,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
         mCountryList = new ArrayList<>();
         mCountryList.addAll(repoList);
         notifyDataSetChanged();
+
     }
 
 
@@ -79,14 +86,10 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
             super(binding.getRoot());
             this.binding = binding;
 
-
-
         }
 
-
-
-
     }
+
 
 
 

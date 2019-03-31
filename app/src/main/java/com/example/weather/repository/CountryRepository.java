@@ -1,7 +1,8 @@
 package com.example.weather.repository;
 
-import com.example.weather.data.model.Country;
-import com.example.weather.data.networking.api.ApiInterface;
+import com.example.weather.networking.model.Country;
+import com.example.weather.networking.RetrofitHelper;
+import com.example.weather.networking.api.ApiInterface;
 
 import java.util.List;
 import io.reactivex.Single;
@@ -12,7 +13,7 @@ public class CountryRepository extends BaseRepository {
     private ApiInterface apiInterface;
 
     public CountryRepository() {
-        apiInterface = getRetrofitHelper().getService(ApiInterface.class);
+        apiInterface = getRetrofitHelper(RetrofitHelper.TYPE.COUNTRY).getService(ApiInterface.class);
     }
 
     public Single<List<Country>> getCountries() {

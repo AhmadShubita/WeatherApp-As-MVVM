@@ -1,7 +1,7 @@
 package com.example.weather.viewmodel;
 
 import com.example.weather.repository.WeatherRepository;
-import com.example.weather.data.model.WeatherResponse;
+import com.example.weather.networking.model.WeatherResponse;
 import com.example.weather.rx.AppSchedulerProvider;
 import com.example.weather.utils.AppConstant;
 import com.example.weather.utils.NetworkUtils;
@@ -28,7 +28,7 @@ public class CountryDetailViewModel extends ViewModel {
     // Fetch Weather statistic data
     public void fetchWeatherData(String lan, String lon) {
         if (NetworkUtils.isNetworkConnected(AppConstant.userContext)) {
-            disposables.add(weatherRepository.getWeather(lan, lon, AppConstant.WEATHER_API)
+            disposables.add(weatherRepository.getWeather(lan, lon, AppConstant.WEATHER_APPID)
                     .subscribeOn(appSchedulerProvider.io())
                     .observeOn(appSchedulerProvider.ui())
                     .subscribe(new Consumer<WeatherResponse>() {

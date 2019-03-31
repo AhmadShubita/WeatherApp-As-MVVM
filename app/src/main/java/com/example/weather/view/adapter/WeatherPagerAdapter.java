@@ -3,7 +3,7 @@ package com.example.weather.view.adapter;
 import android.content.Context;
 
 import com.example.weather.R;
-import com.example.weather.data.model.Weather;
+import com.example.weather.networking.model.Weather;
 import com.example.weather.view.ui.CountryDetailFragment;
 import com.example.weather.view.ui.WeatherFragment;
 

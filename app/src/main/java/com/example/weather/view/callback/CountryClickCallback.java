@@ -1,6 +1,6 @@
 package com.example.weather.view.callback;
 
-import com.example.weather.data.model.Country;
+import com.example.weather.networking.model.Country;
 
 
 public interface CountryClickCallback {

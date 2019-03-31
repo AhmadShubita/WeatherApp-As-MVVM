@@ -10,7 +10,7 @@
 
     <variable
         name="weather"
-        type="com.example.weather.data.model.Weather"/>
+        type="com.example.weather.networking.model.Weather"/>
 
     </data>
 

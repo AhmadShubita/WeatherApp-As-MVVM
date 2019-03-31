@@ -2,7 +2,7 @@ package com.example.weather.viewmodel;
 
 
 import com.example.weather.repository.CountryRepository;
-import com.example.weather.data.model.Country;
+import com.example.weather.networking.model.Country;
 import com.example.weather.rx.AppSchedulerProvider;
 
 import java.util.List;

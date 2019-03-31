@@ -15,7 +15,7 @@
             type="com.example.weather.viewmodel.CountryDetailViewModel"/>
         <variable
             name="country"
-            type="com.example.weather.data.model.Country"/>
+            type="com.example.weather.networking.model.Country"/>
         <variable name="isLoading"
             type="boolean" />
 

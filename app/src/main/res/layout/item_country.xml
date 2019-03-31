@@ -6,18 +6,20 @@
 <data>
     <import type="android.view.View" />
     <variable name="countryThumb" type="String" />
-    <variable name="country" type="com.example.weather.data.model.Country"/>
+    <variable name="country" type="com.example.weather.networking.model.Country"/>
     <variable name="callback" type="com.example.weather.view.callback.CountryClickCallback"/>
 </data>
 
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:onClick="@{() ->  callback.onClick(country)}"
-    android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:background="@color/white"
-    android:clickable="true"
-    android:foreground="?attr/selectableItemBackground"
+    <!--android:onClick="@{() ->  callback.onClick(countryntry)}"-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/iv_countryLayout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/white"
+        android:clickable="true"
+        android:onClick="@{() ->  callback.onClick(country)}"
+        android:foreground="?attr/selectableItemBackground"
     >
 
     <de.hdodenhof.circleimageview.CircleImageView

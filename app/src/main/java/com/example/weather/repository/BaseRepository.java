@@ -1,5 +1,5 @@
 package com.example.weather.repository;
-import com.example.weather.data.networking.RetrofitHelper;
+import com.example.weather.networking.RetrofitHelper;
 import com.example.weather.rx.AppSchedulerProvider;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -10,8 +10,8 @@ import io.reactivex.disposables.CompositeDisposable;
 
 class BaseRepository {
 
-    RetrofitHelper getRetrofitHelper() {
-        return new RetrofitHelper();
+    RetrofitHelper getRetrofitHelper(RetrofitHelper.TYPE type) {
+        return new RetrofitHelper(type);
     }
 
     CompositeDisposable getCompositeDisposable(){

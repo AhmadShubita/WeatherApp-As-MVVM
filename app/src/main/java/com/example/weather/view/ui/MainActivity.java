@@ -5,22 +5,25 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import com.example.weather.R;
-import com.example.weather.data.model.Country;
+import com.example.weather.data.AppPreferencesHelper;
+import com.example.weather.networking.model.Country;
 import com.example.weather.databinding.ActivityMainBinding;
 import com.example.weather.utils.ActivityUtils;
 import com.example.weather.utils.AppConstant;
-import com.example.weather.utils.DividerItemDecoration;
 import com.example.weather.view.adapter.CountryAdapter;
 import com.example.weather.view.callback.CountryClickCallback;
 import com.example.weather.viewmodel.MainViewModel;
+
+import java.util.ArrayList;
 import java.util.List;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CountryClickCallback {
 
     private ActivityMainBinding activityMainBinding;
 
@@ -28,12 +31,12 @@ public class MainActivity extends AppCompatActivity {
 
     private CountryAdapter countryAdapter;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppConstant.userContext = getApplicationContext();
-        setContentView(R.layout.activity_main);
-
         initDataBinding();
 
         initListCountry();
@@ -42,16 +45,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initListCountry() {
-        countryAdapter = new CountryAdapter(countryClickCallback);
+        countryAdapter = new CountryAdapter(this);
         activityMainBinding.navLayout.countryList.setAdapter(countryAdapter);
         activityMainBinding.navLayout.setIsLoading(true);
-        activityMainBinding.navLayout.setLifecycleOwner(this);
     }
 
     private void initDataBinding() {
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mainViewModel = new MainViewModel();
         activityMainBinding.setMainViewModel(mainViewModel);
+
 
         // set up Toolbar and drawer view to be connected with home menu button.
         setUpToolbar();
@@ -64,14 +67,14 @@ public class MainActivity extends AppCompatActivity {
         this.mainViewModel.responseCountries().observe(this,
                 new Observer<List<Country>>() {
             @Override
-            public void onChanged(@Nullable List<Country> countries) {
+            public void onChanged(@Nullable List<Country> countriesList) {
                 Log.e("Observer: -->","called");
 
-                if(countries != null) {
-                    if (countries.size() > 0) {
+                if(countriesList != null) {
+                    if (countriesList.size() > 0) {
                         activityMainBinding.navLayout.setIsLoading(false);
-                        countryAdapter.addItems(countries);
-                        addCountryFragment(countries.get(0));
+                        countryAdapter.addItems(countriesList);
+                        addCountryFragment(countriesList.get(0));
                     }
                 }
 
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         mainViewModel.getCountries();
     }
+
 
     private void addCountryFragment(Country country) {
         ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), new CountryDetailFragment().newInstance(country), R.id.mainContainer, "CountryDetailsFragment");
@@ -103,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     //set up drawer Listener
     private void setUpNavigationView() {
         //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, activityMainBinding.drawer, activityMainBinding.toolbar, R.string.app_name,R.string.app_name) {
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, activityMainBinding.drawer, activityMainBinding.toolbar, R.string.app_name, R.string.app_name) {
 
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -115,20 +119,27 @@ public class MainActivity extends AppCompatActivity {
             public void onDrawerOpened(View drawerView) {
                 // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
                 super.onDrawerOpened(drawerView);
+
+
+
+
             }
         };
         //Setting the actionbarToggle to drawer layout
         activityMainBinding.drawer.setDrawerListener(actionBarDrawerToggle);
         //calling sync state is necessary or else your hamburger icon wont show up
+
         actionBarDrawerToggle.syncState();
     }
 
+
     //callback for country item click
-    private final CountryClickCallback countryClickCallback = new CountryClickCallback() {
-        @Override
-        public void onClick(Country country) {
-            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), new CountryDetailFragment().newInstance(country), R.id.mainContainer, "CountryDetailsFragment");
-            activityMainBinding.drawer.closeDrawers();
-        }
-    };
+    @Override
+    public void onClick(Country country) {
+        ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), new CountryDetailFragment().newInstance(country), R.id.mainContainer, "CountryDetailsFragment");
+        activityMainBinding.drawer.closeDrawers();
+    }
+
+
+
 }
