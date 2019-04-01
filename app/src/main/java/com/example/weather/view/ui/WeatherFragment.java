@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.example.weather.R;
 import com.example.weather.databinding.FragmentWeatherBinding;
+import com.example.weather.di.Injectable;
 import com.example.weather.networking.model.Weather;
 import com.example.weather.utils.CommonUtils;
 

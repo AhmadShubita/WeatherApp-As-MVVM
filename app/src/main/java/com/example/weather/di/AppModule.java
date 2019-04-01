@@ -1,6 +1,6 @@
-package com.example.weather.di.module;
+package com.example.weather.di;
 
-import com.example.weather.di.component.ViewModelSubComponent;
+import com.example.weather.di.ViewModelSubComponent;
 import com.example.weather.networking.api.ApiCountryInterface;
 import com.example.weather.networking.api.ApiWeatherInterface;
 import com.example.weather.utils.AppConstant;

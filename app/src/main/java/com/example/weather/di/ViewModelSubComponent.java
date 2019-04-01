@@ -1,4 +1,4 @@
-package com.example.weather.di.component;
+package com.example.weather.di;
 
 import com.example.weather.viewmodel.CountryDetailViewModel;
 import com.example.weather.viewmodel.MainViewModel;

@@ -10,9 +10,9 @@ import io.reactivex.disposables.CompositeDisposable;
 
 class BaseRepository {
 
-    RetrofitHelper getRetrofitHelper(RetrofitHelper.TYPE type) {
-        return new RetrofitHelper(type);
-    }
+//    RetrofitHelper getRetrofitHelper(RetrofitHelper.TYPE type) {
+//        return new RetrofitHelper(type);
+//    }
 
     CompositeDisposable getCompositeDisposable(){
         return new CompositeDisposable();

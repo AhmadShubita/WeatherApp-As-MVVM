@@ -14,8 +14,6 @@ import retrofit2.http.Query;
 
 public interface ApiWeatherInterface {
 
-    @GET(AppConstant.ENDPOINT_COUNTRY)
-    Single<List<Country>> getCountries();
 
     @GET(AppConstant.ENDPOINT_WEATHER_STATE)
     Single<WeatherResponse> getWeatherData(@Query("lat") String lan, @Query("lon") String lon, @Query("appid") String api);

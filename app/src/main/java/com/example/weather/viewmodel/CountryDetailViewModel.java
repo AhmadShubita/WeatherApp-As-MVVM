@@ -1,12 +1,17 @@
 package com.example.weather.viewmodel;
 
+import com.example.weather.repository.CountryRepository;
 import com.example.weather.repository.WeatherRepository;
 import com.example.weather.networking.model.WeatherResponse;
 import com.example.weather.rx.AppSchedulerProvider;
 import com.example.weather.utils.AppConstant;
 import com.example.weather.utils.NetworkUtils;
+
+import javax.inject.Inject;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 
@@ -20,8 +25,9 @@ public class CountryDetailViewModel extends ViewModel {
 
     private final MutableLiveData<WeatherResponse> response = new MutableLiveData<>();
 
-    public CountryDetailViewModel(){
-        weatherRepository = new WeatherRepository();
+    @Inject
+    public CountryDetailViewModel(@NonNull WeatherRepository weatherRepository){
+        this.weatherRepository = weatherRepository;
     }
 
 

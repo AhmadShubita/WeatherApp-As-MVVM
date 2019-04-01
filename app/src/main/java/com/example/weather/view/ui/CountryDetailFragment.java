@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.example.weather.R;
 import com.example.weather.databinding.FragmentCountryDetailBinding;
+import com.example.weather.di.Injectable;
 import com.example.weather.networking.model.Country;
 import com.example.weather.networking.model.Weather;
 import com.example.weather.networking.model.WeatherResponse;
@@ -16,31 +17,32 @@ import com.example.weather.view.adapter.WeatherPagerAdapter;
 import com.example.weather.viewmodel.CountryDetailViewModel;
 import com.google.android.material.tabs.TabLayout;
 
+import javax.inject.Inject;
+
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 
-public class CountryDetailFragment extends Fragment {
+public class CountryDetailFragment extends Fragment implements Injectable {
+
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
     private static final String COUNTRY_KEY = "country_key";
-
     private FragmentCountryDetailBinding binding;
 
-    private CountryDetailViewModel viewModel;
-
     Country country;
-
     WeatherResponse weatherResponse;
-
     TabClicked mCallback;
 
 
     public interface TabClicked{
         public void sendObjectWeather(Weather weather, int position);
     }
-
 
     public CountryDetailFragment() {
         // Required empty public constructor
@@ -78,19 +80,20 @@ public class CountryDetailFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
        // setup View Model
-        viewModel = new CountryDetailViewModel();
+        final CountryDetailViewModel viewModel = ViewModelProviders.of(this,
+                viewModelFactory).get(CountryDetailViewModel.class);
         if(country!= null){
             binding.setCountryDetailViewModel(viewModel);
             binding.setLifecycleOwner(this);
             binding.setCountry(country);
             binding.setCountryThumb(country.getCountryCode());
         }
-        observeViewModel();
+        observeViewModel(viewModel);
     }
 
-    private void observeViewModel() {
+    private void observeViewModel(CountryDetailViewModel viewModel) {
         // Update the list when the data changes
-        this.viewModel.responseWeather().observe(this,
+        viewModel.responseWeather().observe(this,
                 new Observer<WeatherResponse>() {
                     @Override
                     public void onChanged(@Nullable WeatherResponse weatherResponse) {

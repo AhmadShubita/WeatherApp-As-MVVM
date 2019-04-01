@@ -7,8 +7,11 @@ import com.example.weather.rx.AppSchedulerProvider;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 
@@ -22,8 +25,9 @@ public class MainViewModel extends ViewModel {
 
     private final MutableLiveData<List<Country>> response = new MutableLiveData<>();
 
-    public MainViewModel() {
-        this.countryRepository = new CountryRepository();
+    @Inject
+    public MainViewModel(@NonNull CountryRepository countryRepository) {
+        this.countryRepository = countryRepository;
     }
 
     // fetch country list data model

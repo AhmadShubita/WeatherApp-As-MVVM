@@ -1,6 +1,5 @@
-package com.example.weather.di.module;
+package com.example.weather.di;
 
-import com.example.weather.di.module.FragmentBuildersModule;
 import com.example.weather.view.ui.MainActivity;
 
 import dagger.Module;
