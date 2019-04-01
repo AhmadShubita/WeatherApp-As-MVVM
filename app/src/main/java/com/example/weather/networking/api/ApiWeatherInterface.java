@@ -1,10 +1,4 @@
 package com.example.weather.networking.api;
-
-
-<<<<<<< HEAD:app/src/main/java/com/example/weather/networking/api/ApiInterface.java
-=======
-
->>>>>>> feature/addingdaggar:app/src/main/java/com/example/weather/networking/api/ApiWeatherInterface.java
 import com.example.weather.networking.model.Country;
 import com.example.weather.networking.model.WeatherResponse;
 import com.example.weather.utils.AppConstant;
