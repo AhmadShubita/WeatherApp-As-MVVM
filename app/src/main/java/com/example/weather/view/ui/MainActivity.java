@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import com.example.weather.R;
-
+<<<<<<< HEAD
+=======
+import com.example.weather.di.Injectable;
+>>>>>>> feature/addingdaggar
 import com.example.weather.networking.model.Country;
 import com.example.weather.databinding.ActivityMainBinding;
 import com.example.weather.utils.ActivityUtils;
@@ -35,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements CountryClickCallb
     private ActivityMainBinding activityMainBinding;
 
 
-    
     private CountryAdapter countryAdapter;
 
     @Inject

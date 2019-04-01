@@ -2,9 +2,13 @@ package com.example.weather;
 
 import android.app.Activity;
 import android.app.Application;
-
+import android.content.Context;
+<<<<<<< HEAD
+=======
+import android.content.SharedPreferences;
 
 import com.example.weather.di.AppInjector;
+>>>>>>> feature/addingdaggar
 
 import javax.inject.Inject;
 
@@ -21,7 +25,10 @@ public class AppController extends Application implements HasActivityInjector {
     @Override
     public void onCreate() {
         super.onCreate();
+<<<<<<< HEAD
+=======
         AppInjector.init(this);
+>>>>>>> feature/addingdaggar
     }
 
 
