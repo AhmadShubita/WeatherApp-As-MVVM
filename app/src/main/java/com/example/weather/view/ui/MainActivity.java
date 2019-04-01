@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import com.example.weather.R;
+<<<<<<< HEAD
+=======
+import com.example.weather.di.Injectable;
+>>>>>>> feature/addingdaggar
 import com.example.weather.networking.model.Country;
 import com.example.weather.databinding.ActivityMainBinding;
 import com.example.weather.utils.ActivityUtils;
@@ -14,19 +18,33 @@ import com.example.weather.view.callback.CountryClickCallback;
 import com.example.weather.viewmodel.MainViewModel;
 
 import java.util.List;
+
+import javax.inject.Inject;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
 
-public class MainActivity extends AppCompatActivity implements CountryClickCallback {
+public class MainActivity extends AppCompatActivity implements CountryClickCallback, HasSupportFragmentInjector {
 
     private ActivityMainBinding activityMainBinding;
 
-    private MainViewModel mainViewModel;
 
     private CountryAdapter countryAdapter;
+
+    @Inject
+    DispatchingAndroidInjector<Fragment> dispatchingAndroidInjector;
+
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
 
 
@@ -35,10 +53,8 @@ public class MainActivity extends AppCompatActivity implements CountryClickCallb
         super.onCreate(savedInstanceState);
         AppConstant.userContext = getApplicationContext();
         initDataBinding();
-
         initListCountry();
 
-        observeViewModel();
     }
 
     private void initListCountry() {
@@ -49,8 +65,10 @@ public class MainActivity extends AppCompatActivity implements CountryClickCallb
 
     private void initDataBinding() {
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mainViewModel = new MainViewModel();
-        activityMainBinding.setMainViewModel(mainViewModel);
+        final MainViewModel viewModel = ViewModelProviders.of(this, viewModelFactory)
+                .get(MainViewModel.class);
+        activityMainBinding.setMainViewModel(viewModel);
+        observeViewModel(viewModel);
 
 
         // set up Toolbar and drawer view to be connected with home menu button.
@@ -59,9 +77,9 @@ public class MainActivity extends AppCompatActivity implements CountryClickCallb
 
     }
 
-    private void observeViewModel() {
+    private void observeViewModel(MainViewModel mainViewModel) {
         // Update the list when the data changes
-        this.mainViewModel.responseCountries().observe(this,
+        mainViewModel.responseCountries().observe(this,
                 new Observer<List<Country>>() {
             @Override
             public void onChanged(@Nullable List<Country> countriesList) {
@@ -138,5 +156,8 @@ public class MainActivity extends AppCompatActivity implements CountryClickCallb
     }
 
 
-
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return dispatchingAndroidInjector;
+    }
 }

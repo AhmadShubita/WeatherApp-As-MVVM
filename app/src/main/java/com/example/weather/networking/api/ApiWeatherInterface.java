@@ -1,6 +1,10 @@
 package com.example.weather.networking.api;
 
 
+<<<<<<< HEAD:app/src/main/java/com/example/weather/networking/api/ApiInterface.java
+=======
+
+>>>>>>> feature/addingdaggar:app/src/main/java/com/example/weather/networking/api/ApiWeatherInterface.java
 import com.example.weather.networking.model.Country;
 import com.example.weather.networking.model.WeatherResponse;
 import com.example.weather.utils.AppConstant;
@@ -11,10 +15,8 @@ import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public interface ApiInterface {
+public interface ApiWeatherInterface {
 
-    @GET(AppConstant.ENDPOINT_COUNTRY)
-    Single<List<Country>> getCountries();
 
     @GET(AppConstant.ENDPOINT_WEATHER_STATE)
     Single<WeatherResponse> getWeatherData(@Query("lat") String lan, @Query("lon") String lon, @Query("appid") String api);
