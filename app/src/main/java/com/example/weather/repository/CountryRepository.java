@@ -1,8 +1,6 @@
 package com.example.weather.repository;
 
-import com.example.weather.networking.api.ApiWeatherInterface;
 import com.example.weather.networking.model.Country;
-import com.example.weather.networking.RetrofitHelper;
 import com.example.weather.networking.api.ApiCountryInterface;
 
 import java.util.List;

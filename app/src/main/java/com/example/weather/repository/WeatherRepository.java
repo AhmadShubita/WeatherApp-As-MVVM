@@ -2,13 +2,10 @@ package com.example.weather.repository;
 
 import com.example.weather.networking.api.ApiWeatherInterface;
 import com.example.weather.networking.model.WeatherResponse;
-import com.example.weather.networking.RetrofitHelper;
-import com.example.weather.networking.api.ApiCountryInterface;
 
 import javax.inject.Inject;
 
 import io.reactivex.Single;
-import io.reactivex.annotations.NonNull;
 
 
 public class WeatherRepository {
